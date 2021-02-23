@@ -234,7 +234,7 @@ def start(update: Update, context: CallbackContext):
                             ),
                             InlineKeyboardButton(
                                 text="Channel Owner",
-                                url="https://t.me/danielsins",
+                                url="https://t.me/danielsplaylist",
                             ),
                         ],
                         [
