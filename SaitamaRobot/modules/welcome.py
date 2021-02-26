@@ -190,7 +190,7 @@ def new_member(update: Update, context: CallbackContext):
             # Give the owner a special welcome
             if new_mem.id == OWNER_ID:
                 update.effective_message.reply_text(
-                    "Oh, Genos? Let's get this moving.", reply_to_message_id=reply
+                    "Berikan Penghormatan, Owner dari Meguri yaitu tuan Daniel telah hadir.", reply_to_message_id=reply
                 )
                 welcome_log = (
                     f"{html.escape(chat.title)}\n"
@@ -310,7 +310,7 @@ def new_member(update: Update, context: CallbackContext):
                     if cust_welcome == sql.DEFAULT_WELCOME:
                         cust_welcome = random.choice(
                             sql.DEFAULT_WELCOME_MESSAGES
-                        ).format(first=escape_markdown(first_name))
+                        ).format(mention=escape_markdown(first_name))
 
                     if new_mem.last_name:
                         fullname = escape_markdown(f"{first_name} {new_mem.last_name}")
