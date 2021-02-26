@@ -302,22 +302,22 @@ def new_member(update: Update, context: CallbackContext):
                 if welc_type not in (sql.Types.TEXT, sql.Types.BUTTON_TEXT):
                     media_wel = True
 
-                first_name = (
-                    new_mem.first_name or "PersonWithNoName"
+                mention = (
+                    new_mem.mention or "PersonWithNoName"
                 )  # edge case of empty name - occurs for some bugs.
 
                 if cust_welcome:
                     if cust_welcome == sql.DEFAULT_WELCOME:
                         cust_welcome = random.choice(
                             sql.DEFAULT_WELCOME_MESSAGES
-                        ).format(mention=escape_markdown(first_name))
+                        ).format(mention=escape_markdown(mention))
 
                     if new_mem.last_name:
-                        fullname = escape_markdown(f"{first_name} {new_mem.last_name}")
+                        fullname = escape_markdown(f"{mention} {new_mem.last_name}")
                     else:
-                        fullname = escape_markdown(first_name)
+                        fullname = escape_markdown(mention)
                     count = chat.get_members_count()
-                    mention = mention_markdown(new_mem.id, escape_markdown(first_name))
+                    mention = mention_markdown(new_mem.id, escape_markdown(mention))
                     if new_mem.username:
                         username = "@" + escape_markdown(new_mem.username)
                     else:
@@ -339,12 +339,12 @@ def new_member(update: Update, context: CallbackContext):
 
                 else:
                     res = random.choice(sql.DEFAULT_WELCOME_MESSAGES).format(
-                        first=escape_markdown(first_name)
+                        mention=escape_markdown(mention)
                     )
                     keyb = []
 
                 backup_message = random.choice(sql.DEFAULT_WELCOME_MESSAGES).format(
-                    first=escape_markdown(first_name)
+                    mention=escape_markdown(mention)
                 )
                 keyboard = InlineKeyboardMarkup(keyb)
 
